@@ -16,6 +16,7 @@ pub fn food_change(event: Event) -> i32 {
     match event {
         Event::Storm => -10,
         Event::Sickness(_days) => -5,
+        Event::Windfall(food) => food as i32,
     }
 }
 
@@ -32,7 +33,7 @@ pub fn food_change(event: Event) -> i32 {
 pub fn days_lost(event: Event) -> u32 {
     match event {
         Event::Storm => 1,
-        Event::Sicknes(days) => days,
+        Event::Sickness(days) => days,
         Event::Windfall(_) => 0,
     }
 }
@@ -49,8 +50,9 @@ pub fn days_lost(event: Event) -> u32 {
 /// ```
 pub fn label(event: Event) -> &'static str {
     match event {
-        Event::Storm => 1,
+        Event::Storm => "storm",
         Event::Sickness(_) => "sickness",
         Event::Windfall(_) => "windfall",
     }
 }
+
